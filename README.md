@@ -12,6 +12,24 @@ usuarios y de cursos Bootcamp, con una relacion **many to many**. Utilizando el 
 
 1. Hacer uso de Node.JS para el desarrollo.
 2. Partir de la siguiente estructura para el desarrollo:
+
+```
+- app
+   - config
+      - db.config.js
+   - controllers
+      - bootcamp.controller.js
+      - user.controller.js
+   - models
+      - index.js
+      - bootcamp.model.js
+      - user.model.js
+- node_modules
+- package-lock.json
+- package.json
+- server.js
+```
+
 3. Crear dentro de la carpeta config, el archivo db.config.js, que posee la configuración a la
    base de datos; el nombre de ésta es: db_bootcamp.
 4. Dentro de la carpeta models, se encuentran los modelos tanto para el usuario
@@ -75,16 +93,27 @@ Agregar los siguientes usuarios al Bootcamp:
 | Bootcamp Desarrollo Web Full Stack.                            | Mateo Díaz                               |
 | Bootcamp Big Data, Inteligencia Artificial & Machine Learning. | Mateo Díaz, Santiago Mejías, Lucas Rojas |
 
-Realizar las siguientes consultas:
+---
 
--   Consultando el Bootcamp por id, incluyendo los usuarios.
--   Listar todos los Bootcamp con sus usuarios.
--   Consultar un usuario por id, incluyendo los Bootcamp.
--   Listar los usuarios con sus Bootcamp.
--   Actualizar el usuario según su id; por ejemplo: actualizar el usuario con id=1 por Pedro Sánchez.
--   Eliminar un usuario por id; por ejemplo: el usuario con id=1.
+## RESPUESTAS:
 
-### Instalación / Ejecución 🧨
+### Preparacion en Base de Datos PostgreSQL 💾
+
+Creacion de role `bootcamp_user` en PosgreSQL CLI.
+
+```shell
+CREATE USER bootcamp_user WITH PASSWORD '1234';
+```
+
+Creacion de Base de datos `db_bootcamp` y asignación de role.
+
+```shell
+CREATE DATABASE db_bootcamp OWNER bootcamp_user;
+```
+
+### Ejecución Servidor 🤖
+
+IMPORTANTE: Se debe customizar previamente el archivo `.env`.
 
 Instalación:
 
@@ -98,19 +127,54 @@ Ejecución de servidor en unix:
 npm run dev
 ```
 
-Sincronización de ORM con DB:
+### Sincronización con la base de datos medante scripts
 
-```
-npm run sync-db
-```
+`npm run sync-db` = Inserción de modelos definidos en la base de datos.
 
-### End Points (Postman / Thunder client)
+`npm run sync-users` = Inserción de usuarios en la entidad user.
 
-Listar Todo
+`npm run sync-bootcamps` = Inserción de bootcamps en la entidad bootcamp.
 
-```
-http://localhost:3000/
-```
+`npm run sync-user-bootcamp` = Inserción de relaciones en la entidad user_bootcamp.
+
+### REALIZAR LAS SIGUIENTES CONSULTAS (Postman / Thunder Client):
+
+-   Consulta el Bootcamp por id, incluyendo los usuarios.
+
+    ```
+    http://localhost:3000/bootcamp/findById/1
+    ```
+
+-   Listar todos los Bootcamp con sus usuarios.
+
+    ```
+    http://localhost:3000/bootcamps
+    ```
+
+-   Consultar un usuario por id, incluyendo los Bootcamp.
+
+    ```
+    http://localhost:3000/user/findUserById/1
+    ```
+
+-   Listar los usuarios con sus Bootcamp.
+
+    ```
+    http://localhost:3000/users
+    ```
+
+-   Actualizar el usuario según su id; por ejemplo: actualizar el usuario con id=1 por Pedro
+    Sánchez.
+
+    ```
+    http://localhost:3000/user/update/id/1/firstname/Pedro/lastname/Sánchez/email/pedro.sanchez@correo.com
+    ```
+
+-   Eliminar un usuario por id; por ejemplo: el usuario con id=1.
+
+    ```
+    http://localhost:3000/user/delete/id/1
+    ```
 
 ---
 
