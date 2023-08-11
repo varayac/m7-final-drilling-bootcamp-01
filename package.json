@@ -1,12 +1,15 @@
 {
-	"name": "m7-finall-driling-bootcamp-01",
+	"name": "m7-final-drilling-bootcamp-01",
 	"version": "1.0.0",
 	"description": "first Sprint bootcamp system",
 	"main": "server.js",
 	"scripts": {
 		"dev": "./node_modules/.bin/nodemon",
 		"start": "node server.js",
-		"sync-db": "node ./scripts/createTables.js"
+		"sync-db": "node ./scripts/createTables.js",
+		"sync-users": "node ./scripts/insertUsers.js",
+		"sync-bootcamps": "node ./scripts/insertBootcamps.js",
+		"sync-user-bootcamp": "node ./scripts/insertUsersToBootcamps.js"
 	},
 	"keywords": [],
 	"author": "",

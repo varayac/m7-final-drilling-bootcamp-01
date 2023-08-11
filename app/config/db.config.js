@@ -19,4 +19,4 @@ const sequelize = new Sequelize(PG_DATABASE, PG_USER, PG_PASSWORD, {
 	},
 });
 
-module.exports = { sequelize };
+module.exports = sequelize;

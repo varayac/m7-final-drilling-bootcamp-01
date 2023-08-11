@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const { sequelize } = require('../config/db.config');
+const sequelize = require('../config/db.config');
 
 const Bootcamp = sequelize.define('bootcamp', {
 	title: {
@@ -12,7 +12,7 @@ const Bootcamp = sequelize.define('bootcamp', {
 		validate: {
 			isInt: true,
 			min: 5,
-			max: 10,
+			max: 20, // max 10?, no concuerda con material, le puse 20 : ).
 		},
 	},
 	description: {
@@ -21,4 +21,4 @@ const Bootcamp = sequelize.define('bootcamp', {
 	},
 });
 
-module.exports = { Bootcamp };
+module.exports = Bootcamp;
