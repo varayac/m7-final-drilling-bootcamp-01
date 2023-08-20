@@ -6,4 +6,4 @@ package-lock.json
 .env
 
 # MacOS
-DS_Store
+.DS_Store
