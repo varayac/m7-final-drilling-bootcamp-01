@@ -120,23 +120,6 @@ const updateBootcampById = async (bootcamp) => {
 		console.error(error);
 		throw error;
 	}
-
-	/* try {
-		const updated = await Bootcamp.update(
-			{
-				name: bootcamp.name,
-			},
-			{
-				where: { id: bootcamp.id },
-			}
-		);
-		console.log(`Actualizados ${updated}`);
-		console.log(`Bootcamp id: ${bootcamp.id} fue actualizado con éxito`);
-		return updated[0];
-	} catch (error) {
-		console.error(error);
-		throw error;
-	} */
 };
 
 // Delete bootcamp
